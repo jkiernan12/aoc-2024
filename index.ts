@@ -1,5 +1,7 @@
 import one from './solutions/1';
+import two from './solutions/2';
 import readline from 'node:readline';
+import prompts from 'prompts';
 import dotenv from 'dotenv';
 
 dotenv.config()
@@ -9,13 +11,16 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-const solutions = [one];
+const solutions = [one, two];
 
-rl.question(`Which day are you solving? `, async (day: string) => {
-  try {
-    console.log(await solutions[Number(day) - 1]());
-  } catch {
-    console.log("Santa didn't like that input :(");
-  }
-  rl.close();
-});
+const init = async () => {
+  const response = await prompts({
+    type: 'number',
+    name: 'value',
+    message: 'Which day are you solving?',
+    validate: value => (value < 1 || value > 25) ? `Choose a number between 1 and 25` : true
+  });
+  console.log(await solutions[Number(response.value) - 1]());
+}
+
+init();
