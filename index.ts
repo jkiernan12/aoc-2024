@@ -1,5 +1,6 @@
 import one from './solutions/1';
 import two from './solutions/2';
+import three from './solutions/3';
 import readline from 'node:readline';
 import prompts from 'prompts';
 import dotenv from 'dotenv';
@@ -11,7 +12,7 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-const solutions = [one, two];
+const solutions = [one, two, three];
 
 const init = async () => {
   const response = await prompts({
