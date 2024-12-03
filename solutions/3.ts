@@ -7,7 +7,7 @@ const solution = async () => {
 const solution1 = async (customInput?: string) => {
   // enabling input so we can solve solution2
   const input: string = customInput ? customInput : await getInput(3);
-  return input.match(/mul\([0-9]{1,3},[0-9]{1,999}\)/g).reduce((acc, curr) => {
+  return input.match(/mul\([0-9]{1,3},[0-9]{1,3}\)/g).reduce((acc, curr) => {
     const [num1, num2] = curr.replace('mul(', '').replace(')', '').split(',');
     return acc += (Number(num1) * Number(num2));
   }, 0);
